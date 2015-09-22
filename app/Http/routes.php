@@ -12,11 +12,23 @@
 */
 
 Route::get('/', function () {
+      // return view('allpost');
+});
 
-  $post = \App\Models\Post::all();
-  return $post;
+Route::get('posts', function () {
+  $allpost = \App\Models\Post::all();
+  return view('allpost', compact('post'));
+});
 
-  // $comment = App\Models\
+Route::get('posts/{id}', function ($id) {
+  $post = \App\Models\Post::find($id);
+  return view('post', compact('post'));
+});
 
-    // return view('welcome');
+Route::get('login', function () {
+  return view('login');
+});
+
+Route::get('labels', function () {
+  return view('label');
 });

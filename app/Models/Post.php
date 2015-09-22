@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    public function comments() {
-      return $this->belongsTo('App\Models\Post');
-    } 
+    public function user() {
+      return $this->belongsTo('App\Models\User');
+    }
+    public function comment() {
+      return $this->hasMany('App\Models\Comment');
+    }
+    public function label() {
+      return $this->hasMany('App\Models\Label');
+    }
 }
