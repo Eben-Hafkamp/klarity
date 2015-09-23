@@ -16,13 +16,14 @@ Route::get('/', function () {
 });
 
 Route::get('posts', function () {
-  $allpost = \App\Models\Post::all();
-  return view('allpost', compact('post'));
+  $posts = \App\Models\Post::all();
+  return view('allpost')->with("posts",$posts);
 });
 
 Route::get('posts/{id}', function ($id) {
-  $post = \App\Models\Post::find($id);
-  return view('post', compact('post'));
+   $post = \App\Models\Post::find($id);
+   return $post->label;
+  //  return view('post', ['post' => $post]);
 });
 
 Route::get('login', function () {

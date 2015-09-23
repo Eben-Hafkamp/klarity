@@ -45,14 +45,15 @@
             <div class="blog-posts hfeed">
 
                <!-- Individual post -->
-               @foreach(\App\Models\Post::all() as $post);
+               @foreach($posts as $post)
+
                <div class="post hentry">
                   <div class="post-wrapper left col1">
                      <div class="post-info">
                         <div class="date">
-                           <span class="month">Jul</span>
-                           <span class="day">31</span>
-                           <span class="year"> 2014</span>
+                           <span class="month">{{$post->created_at->format('M')}}</span>
+                           <span class="day">{{$post->created_at->day}}</span>
+                           <span class="year">{{$post->created_at->year}}</span>
                         </div>
                         <a class="comment-number" href="">
                         <span class="comment-num">1</span>
@@ -68,7 +69,7 @@
                            </div>
                            <div class="item-thumb entry-image" style="position:relative;">
                               <a href="">
-                                 <img src="images/main01.jpg" style="max-width:100%;" alt="Commodo omittam copiosae ">
+                                 <img src="{{asset('images/'.$post->picture)}}" style="max-width:100%;" alt="Commodo omittam copiosae ">
                               </a>
                            </div>
                            <div class="entry-feat-overlay">
@@ -76,7 +77,7 @@
                         </div>
                         <div class="clr"></div>
                         <div class="post-meta">
-                           <div class="small">Posted by <a href="" rel="author" title="Posts bySora Templates">Sora Templates</a> in
+                           <div class="small">Posted by <a href="" rel="author">{{$post->user->username}}</a> in
                               <span class="post-categories">
                               <a href="Minimal" rel="tag">Minimal</a>,
                               <a href="Photography" rel="tag">Photography</a>,
@@ -86,17 +87,19 @@
                            </div>
                         </div>
                         <div class="post-title">
-                           <h2><a href="" title="Commodo omittam copiosae ">Commodo omittam copiosae </a></h2>
+                           <h2><a href="{{url('posts/'.$post->id)}}">{{$post->title}}</a></h2>
                         </div>
                         <div class="item-content">
                            <p style="margin:0;">
-                              Id mea dolorum lobortis, vix eu quas officiis. Cu quod ludus disputando vix. Vero nihil ullamcorper in nec. Sed everti voluptatum ad, tantas audiam tractatos at duo. Mel inani option sadipscing ea, senserit ocurreret disputationi has ne.Ad vel cetero iuvaret.
+                              {{$post->content}}
                            </p>
                         </div>
                      </div>
                   </div>
                </div>
+
                @endforeach
+
             </div>
             <div class="blog-pager" id="blog-pager">
                <span id="blog-pager-newer-link">
@@ -257,21 +260,6 @@
             </div>
        </div>               </div>
       <div class="clr"></div>
-   </div>
-</div>
-
-
-<!-- page footer credits-->
-<div class="footer-credits">
-   <div class="ct-wrapper">
-      <p>
-         � Copyright 2015
-         <a href="images//Klarity.html">Klarity</a>
-         <br>
-         <span></span>
-      </p>
-      <div id="mycontent">Created By <a href="http://www.soratemplates.com/" rel="dofollow" target="_blank" title="Blogger Templates">Sora Templates</a> and <a href="http://mybloggerthemes.com/" rel="dofollow" target="_blank" title="Blogger Templates">My Blogger Themes</a></div>
-      <p></p>
    </div>
 </div>
 @stop

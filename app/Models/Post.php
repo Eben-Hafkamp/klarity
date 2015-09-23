@@ -15,4 +15,6 @@ class Post extends Model
     public function label() {
       return $this->hasMany('App\Models\Label');
     }
+
+    protected $dates = ['created_at'];
 }
