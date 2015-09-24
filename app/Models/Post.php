@@ -9,11 +9,11 @@ class Post extends Model
     public function user() {
       return $this->belongsTo('App\Models\User');
     }
-    public function comment() {
+    public function comments() {
       return $this->hasMany('App\Models\Comment');
     }
-    public function label() {
-      return $this->hasMany('App\Models\Label');
+    public function labels() {
+      return $this->belongsToMany('App\Models\Label');
     }
 
     protected $dates = ['created_at'];

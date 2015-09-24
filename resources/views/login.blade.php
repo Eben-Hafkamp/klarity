@@ -47,17 +47,13 @@
                         <h2>Login</h2>
                      </div>
 
-                     <form class="pure-form pure-form-stacked">
-                         <fieldset>
-                             <label for="email">Email</label>
-                             <input id="email" type="email" placeholder="Email">
-
-                             <label for="password">Password</label>
-                             <input id="password" type="password" placeholder="Password">
-
-                             <button type="submit" class="pure-button pure-button-primary">Sign in</button>
-                         </fieldset>
-                     </form>
+                      {!! Form::open(['url' => 'users']) !!}
+                        {!! Form::text('username', null, array('id' => 'username')) !!}
+                        {!! $errors->first('username', '<p class="error">:message</p>') !!}
+                        {!! Form::password('password') !!}
+                        {!! $errors->first('password', '<p class="error">:message</p>') !!}
+                        {!! Form::submit('Submit', ['class' => 'pure-button']) !!}
+                      {!! Form::close() !!}
 
                   </div>
                </div>

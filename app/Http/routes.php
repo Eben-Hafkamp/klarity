@@ -15,6 +15,8 @@ Route::get('/', function () {
       // return view('allpost');
 });
 
+Route::get('login', 'PagesController@showLogin');
+
 Route::get('posts', function () {
   $posts = \App\Models\Post::all();
   return view('allpost')->with("posts",$posts);
@@ -22,14 +24,27 @@ Route::get('posts', function () {
 
 Route::get('posts/{id}', function ($id) {
    $post = \App\Models\Post::find($id);
-   return $post->label;
-  //  return view('post', ['post' => $post]);
-});
+  //  return $post;
+   return view('post', compact('post'));
 
-Route::get('login', function () {
-  return view('login');
+    //return $post->labels;
 });
 
 Route::get('labels', function () {
   return view('label');
+});
+
+Route::get('users/{id}', function ($id) {
+  $user = \App\Models\User::find($id);
+  // return $user;
+  return view('user', compact('user'));
+});
+
+Route::post('users', function(\App\Http\Requests\CreateUserRequest $request) {
+    $user = \App\Models\User::create($request->all());
+
+    $user->password = bcrypt('$user->password');
+    $user->save();
+
+    return redirect('Users/'.$user->id);
 });
