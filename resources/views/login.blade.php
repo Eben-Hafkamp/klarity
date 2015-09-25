@@ -44,12 +44,14 @@
                   <div class="content section form-page">
 
                      <div class="main-heading">
-                        <h2>Login</h2>
+                        <h2>Sign Up</h2>
                      </div>
 
                       {!! Form::open(['url' => 'users']) !!}
-                        {!! Form::text('username', null, array('id' => 'username')) !!}
+                        {!! Form::label('username', 'Username') !!}
+                        {!! Form::text('username') !!}                                      
                         {!! $errors->first('username', '<p class="error">:message</p>') !!}
+                        {!! Form::label('password', 'Password') !!}
                         {!! Form::password('password') !!}
                         {!! $errors->first('password', '<p class="error">:message</p>') !!}
                         {!! Form::submit('Submit', ['class' => 'pure-button']) !!}
